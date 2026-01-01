@@ -1,0 +1,1065 @@
+/* Base Styles */
+
+:root {
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --header-bg: #161b22;
+    --card-bg: #111827;
+    --accent-color: #3498db;
+    --secondary-bg: #0f172a;
+    --border-color: #334155;
+    --input-bg: #0d1117;
+    --input-text: #e5e7eb;
+    --hover-bg: rgba(255, 255, 255, 0.2);
+    --success-bg: #d4edda;
+    --success-text: #155724;
+    --error-bg: #f8d7da;
+    --error-text: #721c24;
+}
+
+:root.light-mode {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --accent-color: #007bff;
+    --secondary-bg: #f1f3f4;
+    --border-color: #dee2e6;
+    --input-bg: #ffffff;
+    --input-text: #495057;
+    --hover-bg: rgba(0, 0, 0, 0.1);
+    --success-bg: #d4edda;
+    --success-text: #155724;
+    --error-bg: #f8d7da;
+    --error-text: #721c24;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--bg-color);
+    min-height: 100vh;
+}
+
+.welcome-section {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 200px;
+}
+
+.welcome-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.welcome-message.active {
+    opacity: 1;
+}
+
+.welcome-message h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-message p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.welcome-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.indicator.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+header {
+    background: var(--header-bg);
+    color: var(--text-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.back-btn {
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--input-text);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-btn:hover {
+    background: var(--card-bg);
+    transform: translateX(-5px);
+}
+
+.bottom-back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--input-text);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.bottom-back-btn:hover {
+    background: var(--card-bg);
+    transform: translateY(-2px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo img {
+    width: 70px;
+    height: 70px;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn {
+    background: var(--hover-bg);
+    border: none;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-btn {
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--card-bg);
+    transform: scale(1.1);
+}
+
+main {
+    min-height: calc(100vh - 200px);
+}
+
+.hero, .sermon-hero {
+    background: var(--header-bg);
+    color: var(--text-color);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.hero h2, .sermon-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p, .sermon-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.social-media {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--bg-color);
+}
+
+.social-media h2 {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    color: #bfdbfe;
+}
+
+.location-section {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #0d1117;
+}
+
+.location-section h2 {
+    color: #c9d1d9;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.location-info {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.location-info p {
+    font-size: 1.2rem;
+    color: #c9d1d9;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.direction-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #1d4ed8;
+}
+
+.direction-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.message-list, .sermon-list {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.message-list h2, .sermon-list h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #c9d1d9;
+    text-align: center;
+    position: relative;
+}
+
+.message-list h2::after, .sermon-list h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #3498db;
+    border-radius: 2px;
+}
+
+.messages-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.message-card, .sermon-card {
+    background-color: #111827;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.message-card:hover, .sermon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.message-info h3, .sermon-title {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.message-info p, .sermon-meta {
+    color: #9aa5b1;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.message-actions, .download-options {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+audio, video {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #3498db;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.download-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.upload-section {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 3rem;
+    background-color: #111827;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.upload-section h1 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.upload-form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.8rem;
+    border: 1px solid #334155;
+    background: var(--bg-color);
+    color: #e5e7eb;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.media-type-options {
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid #334155;
+}
+
+.media-type-option {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem;
+    background-color: #0f172a;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.media-type-option.active {
+    background: #3498db;
+    color: white;
+}
+
+.media-type-option:hover:not(.active) {
+    background-color: #e9ecef;
+}
+
+.file-upload {
+    border: 2px dashed #3498db;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 6px;
+    background-color: #0f172a;
+    transition: all 0.3s;
+}
+
+.file-upload:hover {
+    background-color: #0b1220;
+    border-color: #2980b9;
+}
+
+.file-upload input[type="file"] {
+    display: block;
+    margin: 0 auto;
+}
+
+.submit-btn, .upload-btn {
+    background: linear-gradient(135deg, #27ae60 0%, #219a52 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover, .upload-btn:hover {
+    background: linear-gradient(135deg, #219a52 0%, #1e8449 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+.filter-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background-color: #ecf0f1;
+    border: 2px solid #bdc3c7;
+    padding: 0.6rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.filter-btn.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.filter-btn:hover:not(.active) {
+    background-color: #d5dbdb;
+    border-color: #95a5a6;
+}
+
+.contact-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 3rem 2rem;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.contact-info, .contact-form {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.contact-info h2, .contact-form h2 {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #0f172a;
+    border-radius: 8px;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+.info-item h3 {
+    margin-bottom: 0.5rem;
+    color: #e5e7eb;
+}
+
+.info-item p {
+    color: #7f8c8d;
+    margin: 0;
+}
+
+.about-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 3rem 2rem;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.about-content h2 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.mission-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.point {
+    text-align: center;
+    padding: 1.5rem;
+    background: #111827;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s;
+}
+
+.point:hover {
+    transform: translateY(-5px);
+}
+
+.point i {
+    font-size: 2rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.point h3 {
+    color: #e5e7eb;
+    margin-bottom: 0.5rem;
+}
+
+.point p {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.join-us {
+    background: #2563eb;
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.join-us h2 {
+    margin-bottom: 1rem;
+}
+
+.cta-btn {
+    display: inline-block;
+    background: white;
+    color: #3498db;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.cta-btn:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pastor-info {
+    background: #111827;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.pastor-card h3 {
+    color: #e5e7eb;
+    margin: 1rem 0 0.5rem;
+}
+
+.pastor-card p {
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+}
+
+.pastor-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 0;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background: #161b22;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-style: italic;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+#uploadStatus {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d1117;
+    padding: 2rem;
+}
+
+.auth-card {
+    background: #111827;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 0;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.auth-header h1 {
+    color: #e5e7eb;
+    margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+    color: #7f8c8d;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid #334155;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 0.8rem;
+    background: #0f172a;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    color: #c9d1d9;
+}
+
+.auth-tab.active {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #334155;
+    background: #0d1117;
+    color: #e5e7eb;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.toggle-password:hover {
+    color: #3498db;
+}
+
+.auth-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #27ae60 0%, #219a52 100%);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.auth-btn:hover {
+    background: linear-gradient(135deg, #219a52 0%, #1e8449 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#authMessage {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    display: none;
+}
+
+#authMessage.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#authMessage.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .back-btn {
+        align-self: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .logo {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .hero, .sermon-hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero h2, .sermon-hero h1 {
+        font-size: 2rem;
+    }
+
+    .messages-container, .sermon-list {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+    }
+
+    .message-card, .sermon-card {
+        padding: 1.5rem;
+    }
+
+    .upload-section {
+        padding: 2rem 1rem;
+        margin: 2rem 1rem;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .mission-points {
+        grid-template-columns: 1fr;
+    }
+
+    .media-type-options {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        display: block;
+        margin: 0.5rem auto;
+        width: 200px;
+    }
+
+    .auth-container {
+        padding: 1rem;
+    }
+
+    .auth-card {
+        padding: 1.5rem;
+    }
+
+    .welcome-message h1 {
+        font-size: 2rem;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .social-link {
+        width: 200px;
+        justify-content: center;
+    }
+
+    .location-info p {
+        font-size: 1rem;
+    }
+}
+
+
+/*About the church page*/

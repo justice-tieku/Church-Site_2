@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross Passion - Messages</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1> CROSS PASSION INTERNATIONAL CHURCH</h1>
+            <img src="images.png" alt="Church Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sermon.html">Sermon</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <div class="welcome-container">
+                <div class="welcome-message active" id="message1">
+                    <h1></h1>
+                    <p></p>
+                </div>
+                <div class="welcome-message" id="message2">
+                    <h1></h1>
+                    <p></p>
+                </div>
+                <div class="welcome-message" id="message3">
+                    <h1></h1>
+                    <p></p>
+                </div>
+                <div class="welcome-message" id="message4">
+                    <h1></h1>
+                    <p></p>
+                </div>
+            </div>
+            <div class="welcome-indicators">
+                <span class="indicator active" data-message="1"></span>
+                <span class="indicator" data-message="2"></span>
+                <span class="indicator" data-message="3"></span>
+                <span class="indicator" data-message="4"></span>
+            </div>
+        </section>
+
+        <section class="hero">
+            <h2>Listen to Our Weekly Audio and Video Messages</h2>
+            <p>Spiritual nourishment for your daily walk</p>
+        </section>
+
+        <section class="social-media">
+            <h2>Follow Us</h2>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i> TikTok</a>
+            </div>
+        </section>
+
+        <section class="location-section">
+            <h2>Our Location</h2>
+            <div class="location-info">
+                <p><i class="fas fa-map-marker-alt"></i> C.C University of Ghana Campus</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=C.C+University+of+Ghana+Campus" class="direction-btn" target="_blank">Find Directions</a>
+            </div>
+        </section>
+
+        <section class="message-list">
+            <h2>Recent Messages</h2>
+            <div class="messages-container" id="messagesContainer">
+                <!-- Static recent video message -->
+                <div class="message-card">
+                    <video controls>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="message-info">
+                        <h3>Welcome Message</h3>
+                        <p>December 30, 2025</p>
+                        <p>A special welcome message for our congregation.</p>
+                    </div>
+                    <div class="message-actions">
+                        <a href="#" class="download-btn"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+                <!-- Messages will be loaded here by JavaScript -->
+                <div class="loading">Loading more messages...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Cross Passion International. All Rights Reserved.</p>
+    </footer>
+    <script src="Main.js"></script>
+
+</body>
+
+</html>

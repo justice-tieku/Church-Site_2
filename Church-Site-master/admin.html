@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Upload Sermon - Cross Passion International Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+        <div class="logo">
+            <h1> CROSS PASSION INTERNATIONAL CHURCH</h1>
+            <img src="images.png" alt="Church Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sermon.html">Sermon</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button onclick="logout()" class="logout-btn">Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="upload-section">
+            <h1>Upload New Sermon</h1>
+            <form id="sermonUploadForm" action="api/upload.php" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="sermonTitle">Sermon Title</label>
+                    <input type="text" id="sermonTitle" name="sermonTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="preacher">Preacher</label>
+                    <input type="text" id="preacher" name="preacher" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sermonDate">Date</label>
+                    <input type="date" id="sermonDate" name="sermonDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sermonDescription">Description (Optional)</label>
+                    <textarea id="sermonDescription" name="sermonDescription"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Media Type</label>
+                    <div class="media-type-options">
+                        <div class="media-type-option active" data-type="audio">Audio Only</div>
+                        <div class="media-type-option" data-type="video">Video Message</div>
+                    </div>
+                    <input type="hidden" id="mediaType" name="mediaType" value="audio">
+                </div>
+
+                <!-- Audio Upload Section -->
+                <div class="form-group" id="audioUploadSection">
+                    <label for="audioFile">Audio File (MP3)</label>
+                    <div class="file-upload">
+                        <input type="file" id="audioFile" name="audioFile" accept="audio/mp3">
+                    </div>
+                </div>
+
+                <!-- Video Upload Section (hidden by default) -->
+                <div class="form-group hidden" id="videoUploadSection">
+                    <label for="videoFile">Video File (MP4)</label>
+                    <div class="file-upload">
+                        <input type="file" id="videoFile" name="videoFile" accept="video/mp4">
+                    </div>
+
+                    <label for="videoThumbnail">Video Thumbnail (Optional)</label>
+                    <div class="file-upload">
+                        <input type="file" id="videoThumbnail" name="videoThumbnail" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="transcriptFile">Transcript (Optional, PDF)</label>
+                    <div class="file-upload">
+                        <input type="file" id="transcriptFile" name="transcriptFile" accept="application/pdf">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn"><i class="fas fa-upload"></i> Upload Sermon</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Cross Passion International. All Rights Reserved.</p>
+    </footer>
+
+    <script src="Main.js"></script>
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('adminToken');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Verify token with server
+            fetch('api/auth.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({ action: 'check' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    localStorage.removeItem('adminToken');
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => {
+                localStorage.removeItem('adminToken');
+                window.location.href = 'login.html';
+            });
+        });
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'login.html';
+        }
+
+        // Toggle between audio and video upload sections
+        document.querySelectorAll('.media-type-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.media-type-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                const mediaType = this.dataset.type;
+                document.getElementById('mediaType').value = mediaType;
+
+                if (mediaType === 'audio') {
+                    document.getElementById('audioUploadSection').classList.remove('hidden');
+                    document.getElementById('videoUploadSection').classList.add('hidden');
+                } else {
+                    document.getElementById('audioUploadSection').classList.add('hidden');
+                    document.getElementById('videoUploadSection').classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

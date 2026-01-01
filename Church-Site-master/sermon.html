@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermons - Cross Passion International Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+        <div class="logo">
+            <h1> CROSS PASSION INTERNATIONAL CHURCH</h1>
+            <img src="images.png" alt="Church Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sermon.html" class="active">Sermon</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="sermon-hero">
+            <h1>Church Sermons</h1>
+            <p>Listen to and download our weekly messages</p>
+        </section>
+
+        <section class="sermon-list">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Sermons</button>
+                <button class="filter-btn" data-filter="audio">Audio Only</button>
+                <button class="filter-btn" data-filter="video">Video Messages</button>
+            </div>
+
+            <!-- Sermon 1 (Video) -->
+            <div class="sermon-card" data-type="video">
+                <h2 class="sermon-title">The Power of Faith</h2>
+                <div class="sermon-meta">
+                    <span>Preacher: Pastor John</span> |
+                    <span>Date: 2023-06-12</span> |
+                    <span>Duration: 45 min</span>
+                </div>
+                <div class="media-container">
+                    <video controls poster="thumbnails/sermon1.jpg">
+                        <source src="sermons/video/sermon1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="download-options">
+                    <a href="sermons/video/sermon1.mp4" class="download-btn"><i class="fas fa-download"></i> Download Video (MP4)</a>
+                    <a href="sermons/audio/sermon1.mp3" class="download-btn"><i class="fas fa-download"></i> Download Audio (MP3)</a>
+                    <a href="sermons/transcripts/sermon1.pdf" class="download-btn"><i class="fas fa-download"></i> Download Transcript</a>
+                </div>
+            </div>
+
+            <!-- Sermon 2 (Audio) -->
+            <div class="sermon-card" data-type="audio">
+                <h2 class="sermon-title">Walking in Love</h2>
+                <div class="sermon-meta">
+                    <span>Preacher: Rev. Sarah</span> |
+                    <span>Date: 2023-06-05</span> |
+                    <span>Duration: 40 min</span>
+                </div>
+                <div class="media-container">
+                    <audio controls>
+                        <source src="sermons/audio/sermon2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="download-options">
+                    <a href="sermons/audio/sermon2.mp3" class="download-btn"><i class="fas fa-download"></i> Download Audio (MP3)</a>
+                    <a href="sermons/transcripts/sermon2.pdf" class="download-btn"><i class="fas fa-download"></i> Download Transcript</a>
+                </div>
+            </div>
+
+            <!-- Additional sermons would appear here as they're uploaded -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Cross Passion International. All Rights Reserved.</p>
+    </footer>
+
+    <script src="Main.js"></script>
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                const sermons = document.querySelectorAll('.sermon-card');
+
+                sermons.forEach(sermon => {
+                    if (filter === 'all' || sermon.dataset.type === filter) {
+                        sermon.style.display = 'block';
+                    } else {
+                        sermon.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
