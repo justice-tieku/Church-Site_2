@@ -8,7 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-require_once 'includes/db.php';
+try {
+    require_once 'includes/db.php';
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'message' => 'Database connection failed. Please ensure the database is set up correctly.']);
+    exit;
+}
 
 $data = json_decode(file_get_contents('php://input'), true);
 $action = $data['action'] ?? '';

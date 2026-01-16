@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Cross Passion International Church</title>
+    <link rel="icon" type="image/png" href="images.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -148,17 +149,24 @@
                     password: password
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     showMessage('Registration successful! Please login.', 'success');
                     document.querySelector('[data-tab="login"]').click();
+                    document.getElementById('registerForm').reset();
                 } else {
-                    showMessage(data.message, 'error');
+                    showMessage(data.message || 'Registration failed. Please try again.', 'error');
                 }
             })
             .catch(error => {
-                showMessage('Registration failed. Please try again.', 'error');
+                console.error('Error:', error);
+                showMessage('Registration failed. Please ensure the database is set up. Run setup_database.php first.', 'error');
             });
         });
 
